@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11-08-2025 Trello</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+
+        .container {
+            width: 100%;
+            height: 70vh;
+            background: lawngreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5vw;
+        }
+
+        .container .box1 {
+            height: 61vh;
+            width: 53vh;
+            border: 1px solid black;
+            display: flex;
+            justify-content: start;
+            gap: 3vh;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 2vmin;
+            overflow: hidden;
+        }
+
+        .container .box1 .heading {
+            text-align: center;
+            color: white;
+            background: black;
+            height: 10vh;
+            width: 100%;
+        }
+
+        .container .box2 {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            height: 100%;
+            gap: 5px;
+            overflow: auto;
+            overflow-x: hidden;
+        }
+
+        .container .box2 .ptext {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-size: larger;
+            border: 1px solid black;
+            cursor: grab;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- TASKS BOX -->
+        <div class="box1">
+            <div class="heading">
+                <h1>TASKS</h1>
+            </div>
+            <div class="box2">
+                <div class="ptext" draggable="true">
+                    <p id="content">Solve leetcode 75 blind</p>
+                </div>
+                <div class="ptext" draggable="true">
+                    <p id="content">Build Saas</p>
+                </div>
+                <div class="ptext" draggable="true">
+                    <p id="content">11 Billion Dollar</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- IN PROCESS -->
+        <div class="box1">
+            <div class="heading">
+                <h1>IN PROGRESS</h1>
+            </div>
+            <div class="box2">
+                <div class="ptext" draggable="true">
+                    <p id="content">Client Meeting</p>
+                </div>
+                <div class="ptext" draggable="true">
+                    <p id="content">Stack Holder Meeting</p>
+                </div>
+                <div class="ptext" draggable="true">
+                    <p id="content">day Scrub Meeting</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- COMPLETED -->
+        <div class="box1">
+            <div class="heading">
+                <h1>COMPLETED</h1>
+            </div>
+            <div class="box2">
+                <div class="ptext" draggable="true">
+                    <p id="content">Login</p>
+                </div>
+                <div class="ptext" draggable="true">
+                    <p id="content">Tickets raised</p>
+                </div>
+                <div class="ptext" draggable="true">
+                    <p id="content">💀</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const text = document.querySelectorAll(".ptext")
+        const divs = document.querySelectorAll(".box2")
+        console.log(divs)
+        let draggedItem = null
+
+        // text.forEach(item => {
+        //     item.addEventListener("dragstart",(e)=>{
+        //         draggedItem = e.currentTarget
+        //     })
+
+
+        // })
+
+        // divs.forEach(box => {
+        //     box.addEventListener("dragover",(e)=> e.preventDefault())
+        //     box.addEventListener("drop",(e)=>{
+        //         e.currentTarget.appendChild(draggedItem)
+
+                
+        //     })
+        // })
+
+        for(let i = 0; i < text.length; i++){
+            text[i].addEventListener("dragstart", (e)=>{
+                draggedItem = e.currentTarget
+            })
+
+            
+            if(divs[i]){
+
+                divs[i].addEventListener("dragover",(e)=>{
+                    console.log(e)
+                    e.preventDefault()
+                })
+    
+                divs[i].addEventListener("drop",(e)=>{
+                    e.currentTarget.appendChild(draggedItem)
+                })
+            }
+        }
+
+
+        
+
+        
+    </script>
+</body>
+
+</html>
